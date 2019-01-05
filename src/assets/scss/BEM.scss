@@ -1,0 +1,162 @@
+body {
+  background-color: #f7f9fa;
+  width: 100%;
+  margin: 0;
+  color: #4a4a4a;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+input:focus {
+  outline: none;
+}
+
+.navbar {
+  background-color: #fb651e;
+  min-height: 3.25rem;
+  height: 60px;
+
+  .navbar__container {
+    display: flex;
+    max-width: 1152px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    flex: 1;
+  }
+  
+  .navbar__brand {
+    display: flex;
+    width: 68px;
+    min-height: 3.25rem;
+    height: 100%;
+
+    .navbar__link {
+      display: grid;
+      height: 100%;
+      width: 100%;
+
+      .site-logo {
+        margin: auto;
+        max-height: 2.75rem;
+      }
+    }
+
+  }
+
+  .navbar__menu {
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    .navbar__start {
+      margin-right: auto;
+      display: grid;
+      
+      .navbar__start__link {
+        margin: auto;
+        cursor: pointer;
+        color: #fff;
+        font-size: 22px;
+        text-align: center;
+        font-weight: 300;
+        line-height: 30px;
+        min-width: 125px;
+      }
+    }
+  }
+
+  .navbar__end {
+    margin-left: auto;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .navbar__end__item {
+      display: flex;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      height: 100%;
+      align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      &.navbar__filter {
+
+        .navbar__filter__item {
+          margin-right: 5px;
+          margin-left: 5px;
+
+          &.navbar__filter__input {
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 5px;
+          }
+        }
+      }
+
+      &.navbar__profile{
+        display: flex;
+        position: relative;
+
+        &:hover {
+          >.navbar__profile__dropdown {
+            display: block;
+          }
+        }
+        .navbar__profile__dropdown {
+          background-color: #fff;
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+          box-shadow: 0 8px 8px rgba(10, 10, 10, 0.1);
+          font-size: .875rem;
+          display: none;
+          min-width: 100%;
+          position: absolute;
+          top: 100%;
+          z-index: 20;
+          width: 130px;
+          color: #000;
+          padding: 10px 0;
+
+          .dropdown__item {
+            display: block;
+            padding: .375rem 1rem;
+            white-space: nowrap;
+
+            &:hover {
+              background-color: #f5f5f5;
+              color: #0a0a0a;
+            }
+          }
+
+          .dropdown__caret {
+            font-size: 200%;
+            position: absolute;
+            top: -18px;
+            left: 56px;
+            color: #fff;
+          }
+
+          .dropdown__divider {
+            background-color: #f5f5f5;
+            border: none;
+            height: 2px;
+            margin: .5rem 0;
+          }
+        }
+      }
+    }
+  }
+}
+

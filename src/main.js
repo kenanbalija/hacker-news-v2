@@ -17,7 +17,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
-require('./assets/scss/app.scss');
+// require('./assets/scss/app.scss');
+require('./assets/scss/BEM.scss');
 
 Vue.config.productionTip = false
 

@@ -1,72 +1,73 @@
 <template>
-<section>
+<header>
   <nav class="navbar" role="navigation" aria-label="main navigation">
-    <section class="container">
-      <div class="navbar-brand">
+    <section class="navbar__container">
+      <div class="navbar__brand">
 
-        <router-link class="navbar-item" to="/">
-          <img src="../assets/logo.png">
+        <router-link class="navbar__link" to="/">
+          <img class="site-logo" src="../assets/logo.png">
         </router-link>
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button" class="navbar__burger">
           <span v-for="value in [1,2,3]" aria-hidden="true" :key="value + '_span'" />
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <router-link class="navbar-item router-logo" to="/">
+      <div class="navbar__menu">
+        <section class="navbar__start">
+          <router-link class="navbar__start__link" to="/">
               Hacker News
           </router-link>
-        </div>
+        </section>
 
-        <div class="navbar-end">
-          <div class="navbar-item">
+        <section class="navbar__end">
+          <div class="navbar__end__item navbar__filter">
 
             <transition-group name="fade">
-              <span class="clear-news-filter" v-show="newsFilter.length" 
+              <span class="navbar__filter__item" v-show="newsFilter.length" 
                   key="transition-icon">
-                <font-awesome-icon 
-                  icon="times" 
-                  @click="clearNewsFilter"/>
+                <font-awesome-icon icon="times" @click="clearNewsFilter"/>
               </span>
 
-              <input class="search-filter"
+              <input
                 type="text"
                 ref="searchInput"
                 v-show="searchOn"
                 @keyup="activateNewsFilter"
                 v-model="newsFilter"
-                key="transition-input">
+                key="transition-input"
+                class="navbar__filter__item navbar__filter__input">
 
             </transition-group>
 
-            <font-awesome-icon icon="search" class="search-filter-toggle" @click="toggleSearch"/>
+            <font-awesome-icon icon="search" class="navbar__filter__item" @click="toggleSearch"/>
           </div>
 
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-item">
-              <font-awesome-icon icon="user-tag" />
+          <div class="navbar__end__item navbar__profile">
+            <a class="navbar__profile__icon">
+              <font-awesome-icon icon="user" />
             </a>
 
-            <div class="navbar-dropdown">
-              <font-awesome-icon class="fa-caret-up" icon="caret-up" />
+            <div class="navbar__profile__dropdown">
+
+              <font-awesome-icon class="dropdown__caret" icon="caret-up" />
 
               <template v-for="(link, index) in userLinks">
-                <a  :key="link.name" class="navbar-item" >
+                <a  :key="link.name" class="dropdown__item" >
                   {{ link.name }}
                 </a>
-                <hr class="navbar-divider" v-if="index == 2" :key="link.name +'_hr'">
+                <hr class="dropdown__divider" v-if="index == 2" :key="link.name +'_hr'">
               </template>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </section>
   </nav>
+
   <sub-nav />
 
-</section>
+</header>
 
 </template>
 

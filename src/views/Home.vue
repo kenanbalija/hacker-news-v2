@@ -1,7 +1,5 @@
 <template>
-  <section>
-    <news-component />
-  </section>
+  <news-component />
 </template>
 
 <script>

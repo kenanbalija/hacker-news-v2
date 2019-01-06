@@ -1,21 +1,22 @@
 <template>
-  <modal classes="custom-modal" height="auto" :scrollable="true" name="read-news-modal" transition="fade"  @before-open="beforeOpen">
-    <section class="container">
-      <button class="close-button" @click="close">Close</button>
-      <h2>
+  <modal classes="block-modal" height="auto" :scrollable="true" name="read-news-modal" transition="fade"  @before-open="beforeOpen">
+    
+    <section class="block-modal__section">
+      <button class="block-modal__section__close-button" @click="close">Close</button>
+      <h1 class="block-modal__section__heading">
         {{ news.title }}
-      </h2>
-      <ul class="inline">
-        <li>
+      </h1>
+      <ul class="block-modal__section__list">
+        <li class="list-item">
           <font-awesome-icon icon="clock" />
           {{ getTimeAgo(news.time) }}
         </li>
-        <li>
+        <li class="list-item">
           <font-awesome-icon icon="user" />
           {{ news.by }}
           </li>
-        <li>
-          <a :href="news.url" target="_blank">
+        <li class="list-item">
+          <a class="list-item__anchor" :href="news.url" target="_blank">
             <font-awesome-icon icon="link" />
             <template v-if="news.url">
               {{ getDomain(news.url) }}
@@ -23,28 +24,35 @@
           </a>
         </li>
       </ul>
-      <div class="action-buttons">
-        <button class="btn">
+      <section class="block-modal__section__actions">
+        <button class="action-button">
           <font-awesome-icon icon="check" @click="vote"/>
           Vote
         </button>
-        <button class="btn" @click="rate">
+        <button class="action-button" @click="rate">
           <font-awesome-icon icon="star" />
           Favorite
         </button>
-        <button class="btn" @click="share">
+        <button class="action-button" @click="share">
           <font-awesome-icon icon="share" />
           Share
         </button>
-      </div>
+      </section>
     </section>
-    <div class="container">
-      <iframe class="news-iframe" :src="news.url"></iframe>
-    </div>
-    <div class="container">
-      <div class="points-score inline">
-        <div class="small">
-        <p>
+
+    <section class="block-modal__section">
+      <iframe v-if="loaded" class="block-modal__section__iframe" :src="news.url"></iframe>
+      <h2 class="block-modal__section__heading block-modal__section__heading--warn" v-else>
+        Source does not allow their site to be seen through iframe.
+        <br/>
+        Please click <a :href="news.url" target="_blank">here</a> to visit!
+      </h2>
+    </section>
+
+
+    <section class="block-modal__section">
+      <section class="block-modal__section__comments-stats">
+        <p class="comment-paragraph">
           <template v-if="news.kids">
             {{ news.kids.length }}
           </template>
@@ -52,35 +60,38 @@
             0
           </template>
         </p>
-        <span>COMMENTS</span>
-        </div>
-      </div>
-      <div class="action-buttons t-20">
-        <button class="btn join-next">
+        <h1 class="comment-heading">COMMENTS</h1>
+      </section>
+
+      <section class="block-modal__section__actions">
+        <button class="action-button action-button--wide">
           Join Thread
         </button>
-        <button class="btn join-next" @click="rate">
+        <button class="action-button action-button--wide" @click="rate">
           Next Thread
         </button>
-      </div>
-      <hr>
-    </div>
-    <div class="container comments" v-if="comments">
-      <div v-for="comment in comments" :key="comment.id">
-        <h1 v-html="comment.text" />
-        <ul>
-          <li>
+      </section>
+
+      <hr class="horizontal-rule">
+    </section>
+    
+    <section class="block-modal__section" v-if="comments">
+      <article class="block-modal__section__comments" v-for="comment in comments" :key="comment.id">
+        <h1 class="comment-heading" v-html="comment.text" />
+        
+        <ul class="comment-list">
+          <li class="comment-list__item">
             <font-awesome-icon icon="clock" />
             {{ getTimeAgo(comment.time) }}
           </li>
-          <li>
+          <li class="comment-list__item">
             <font-awesome-icon icon="user" />
             {{ comment.by }}
           </li>
         </ul>
-      </div>
-      <hr>
-    </div>
+
+      </article>
+    </section>
   </modal>
 </template>
 <script>
@@ -92,6 +103,7 @@ export default {
     return {
       news: {},
       comments: [],
+      loaded: true,
     }
   },
   methods: {
@@ -129,7 +141,7 @@ export default {
     },
     share() {
       //TODO: IMPLEMENT SHARE METHOD
-    }
-  },
+    },
+  }
 }
 </script>

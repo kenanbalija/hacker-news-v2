@@ -1,25 +1,31 @@
 <template>
-  <section class="sub-nav-container">
-    <nav class="sub-nav container">
-      <div class="navbar-menu">
-        <div class="navbar-start">
-          <div v-for="(filter, index) in filterType" :key="filter.name">
-            <button :class="{active : filter.isActive }" @click="activateFilterType(index)">{{ filter.name }}</button>
-          </div>
-        </div>
-        <div class="navbar-end">
+  <section class="sub-nav">
+    <nav class="sub-nav__container">
+
+        <ul class="sub-nav__container__list sub-nav__start">
+          <li v-for="(filter, index) in filterType" :key="filter.name" class="sub-nav__list-item">
+            <button class="sub-nav__list-item__button" 
+              :class="{'sub-nav__list-item__button--active' : filter.isActive }" 
+              @click="activateFilterType(index)">{{ filter.name }}
+            </button>
+          </li>
+        </ul>
+
+        <ul class="sub-nav__container__list sub-nav__end">
           <transition name="fade">
-            <div v-if="timeActive">
-              <button @click="clearFilterTime">
+            <li v-if="timeActive" class="sub-nav__list-item">
+              <button class="sub-nav__list-item__button" @click="clearFilterTime">
                 <font-awesome-icon icon="times" />
               </button>
-            </div>
+            </li>
           </transition>
-          <div v-for="(filter, index) in filterTime" :key="filter.name">
-            <button :class="{active : filter.isActive }" @click="activateFilterTime(index)">{{ filter.name }}</button>
-          </div>
-        </div>
-      </div>
+
+          <li v-for="(filter, index) in filterTime" :key="filter.name" class="sub-nav__list-item">
+            <button class="sub-nav__list-item__button" 
+              :class="{'sub-nav__list-item__button--active' : filter.isActive }" 
+              @click="activateFilterTime(index)">{{ filter.name }}</button>
+          </li>
+        </ul>
     </nav>
   </section>
 </template>

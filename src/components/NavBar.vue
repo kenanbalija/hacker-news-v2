@@ -24,7 +24,7 @@
           <div class="navbar__end__item navbar__filter">
 
             <transition-group name="fade">
-              <span class="navbar__filter__item" v-show="newsFilter.length" 
+              <span class="navbar__filter__item" v-show="newsFilter.length && searchOn" 
                   key="transition-icon">
                 <font-awesome-icon icon="times" @click="clearNewsFilter"/>
               </span>

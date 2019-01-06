@@ -1,50 +1,54 @@
 <template>
-<section>
-  <div class="all-news-container">
-    <h1 class="has-text-centered">Latest News of Today</h1>
-    <section v-if="filteredNews.length" class="container news-container">
-      <div v-for="(news, index) in filteredNews"
-        :key="news.id"
-        class="columns" :class="{ 'bb-1' : index != filteredNews.length}">
+  <section>
+    <article class="page">
+      
+      <h1 class="page__heading">Latest News of Today</h1>
 
-        <div class="column is-one-quarter">
-          <section class="columns">
-            <div class="column points-score">
-              <p>{{ news.score }}</p>
-              <span>POINTS</span>
-            </div>
+      <section v-if="filteredNews.length" class="page__container">
 
-            <div class="column points-score">
-              <template v-if="news.kids">
-                <p>{{ news.kids.length }}</p>
-              </template>
-              <template v-else>
-                <p>0</p>
-              </template>
-              <span>COMMENTS</span>
+        <article v-for="(news, index) in filteredNews"
+          :key="news.id"
+          class="article"
+          :class="{ 'article--border-bottom' : index != filteredNews.length}">
+
+          <section class="article__section article__section--first-column">
+            
+              <div class="column column__points">
+                <p class="column__paragraph">{{ news.score }}</p>
+                <span class="column__title">POINTS</span>
+              </div>
+
+              <div class="column column__comments">
+                <template v-if="news.kids">
+                  <p class="column__paragraph">{{ news.kids.length }}</p>
+                </template>
+                <template v-else>
+                  <p class="column__paragraph">0</p>
+                </template>
+                <span class="column__title">COMMENTS</span>
+              </div>
+
+          </section>
+
+          <section class="article__section article__section--second-column">
+            <div class="column">
+              <p class="column__paragraph">{{ news.title }}</p>
+              <info-component :indx="index"/>
             </div>
           </section>
-        </div>
 
-        <div class="column is-three-fifths news-data">
-          <div>
-            <p>{{ news.title }}</p>
-            <ul>
-              <info-component :index="index"/>
-            </ul>
-          </div>
-        </div>
+          <section class="article__section article__section--third-column">
+            <div class="column">
+              <button class="column__button" @click="readMore(news)">Read More</button>
+            </div>
+          </section>
 
-        <div class="column is-one-fifths">
-          <div class="read-more">
-            <button class="button" @click="readMore(news)">Read More</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-  <read-news />
-</section>
+        </article>
+      </section>
+    </article>
+
+    <read-news />
+  </section>
 </template>
 
 <script>2

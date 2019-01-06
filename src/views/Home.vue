@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <section>
     <news-component />
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,0 +1,119 @@
+.page {
+  
+  .page__heading {
+    font-size: 32px;
+    padding: 50px 0;
+    text-align: center;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .page__container {
+    background-color: #fff;
+    padding: 10px 12px;
+    border: 3px solid #f0f2f2;
+    max-width: 1152px;
+    width: 1152px;
+    margin: 0 auto;
+  }
+
+  .article {
+    display: flex;
+    padding: .75rem;
+    margin-bottom: .75rem;
+
+    &.article--border-bottom {
+      border-bottom: 2px solid #f0f2f2;
+    }
+
+    .article__section {
+      display: grid;
+
+      &.article__section--first-column {
+        grid-template: 1fr / 1fr 1fr;
+        width: 20%;
+
+        .column {
+
+          .column__paragraph {
+            margin: 0;
+            color: $main-color;
+            font-size: 22px;
+            font-weight: 300;
+            margin-bottom: 0;
+          }
+          
+          .column__title {
+            color: $sub-color;
+          }
+        }
+      }
+
+
+      &.article__section--second-column {
+        width: 70%;
+
+        .column {
+          grid-template: 2fr / 1fr;
+          margin: 0;
+          border-left: 3px solid #f0f2f2;
+          margin-left: 20px;
+          padding-left: 20px;
+          width: 80%;
+          
+          .column__paragraph {
+            margin: 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            font-weight: 400;
+            padding-bottom: 0;
+            font-size: 22px;
+
+          }
+
+          .news-info {
+            @extend %margin-padding-0;
+
+            .news-info__list {
+              list-style-type: none;
+              display: inline-block; 
+              padding-right: 10px;
+              color: $sub-color;
+              font-size: 14px;
+              font-weight: 300;
+
+              .news-info__list__anchor {
+                color: $sub-color;
+              }
+            }
+          }
+        }
+      }
+
+      &.article__section--third-column {
+        width: 10%;
+
+        .column {
+          margin: auto;
+
+          .column__button {
+            border-color: #dbdbdb;
+            border-width: 1px;
+            cursor: pointer;
+            justify-content: center;
+            padding: 10px 12px;
+            text-align: center;
+            background-color: #f2f2f2;
+            border-radius: 18px;
+            color: #969696;
+            border: none;
+            margin: auto;
+            font-size: 1rem;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,17 +1,17 @@
 <template>
-  <ul>
-    <li>
+  <ul class="news-info">
+    <li class="news-info__list">
       <font-awesome-icon icon="clock" />
       {{ getTimeAgo() }}
     </li>
-    <li>
+    <li class="news-info__list">
       <font-awesome-icon icon="user" />
-      {{ $parent.news[index].by }}
-      </li>
-    <li>
-      <a :href="$parent.news[index].url" target="_blank">
+      {{ $parent.news[indx].by }}
+    </li>
+    <li class="news-info__list">
+      <a class="news-info__list__anchor" :href="$parent.news[indx].url" target="_blank">
         <font-awesome-icon icon="link" />
-        <template v-if="$parent.news[index].url">
+        <template v-if="$parent.news[indx].url">
           {{ getDomain() }}
         </template>
       </a>
@@ -21,14 +21,14 @@
 <script>
 export default {
   props: {
-    index : ''
+    indx : ''
   },
   methods: {
     getTimeAgo() {
-      return this.$parent.getTimeAgo(this.$parent.news[this.index].time);
+      return this.$parent.getTimeAgo(this.$parent.news[this.indx].time);
     },
     getDomain() {
-      return this.$parent.getDomain(this.$parent.news[this.index].url)
+      return this.$parent.getDomain(this.$parent.news[this.indx].url)
     },
   }
 }
